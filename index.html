@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGNHS Graduation & Moving-Up 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-main: #001f3f;
+            --black-deep: #000a1a;
+            --gold-main: #d4af37;
+            --gold-highlight: #f1e5ac;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* Navy-to-black radial gradient background */
+            background: radial-gradient(circle at top, var(--navy-main) 0%, var(--black-deep) 100%);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 1. LAYERED GOLD GLITTER DUST TRAILS */
+        /* Gumagamit ng multiple background layers para ma-simulate ang density at curves */
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                /* core particles */
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px), 
+                /* finer particles */
+                radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 30px), 
+                /* trail simulation 1 - left curve */
+                linear-gradient(135deg, transparent 5%, rgba(212, 175, 55, 0.15) 10%, transparent 20%) top left,
+                /* trail simulation 2 - right curve */
+                linear-gradient(-35deg, transparent 15%, rgba(212, 175, 55, 0.1) 25%, transparent 35%) bottom right;
+            opacity: 0.25;
+            filter: blur(1.5px);
+            z-index: 1;
+        }
+
+        /* 2. SPOTLIGHTS (COOL & WARM CONES) */
+        /* Positioned absolutely at top corners */
+        .spotlight-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .spotlight-left {
+            position: absolute;
+            top: -100px; left: -150px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 80%);
+            filter: blur(50px);
+        }
+        .spotlight-right {
+            position: absolute;
+            top: -50px; right: -200px;
+            width: 550px; height: 550px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            filter: blur(40px);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            text-align: center;
+            z-index: 2; /* I-angat ang content sa ibabaw ng glitter/spotlights */
+            padding: 60px 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            margin-bottom: 60px;
+        }
+
+        /* SCHOOL NAME & LOCATION */
+        /* Correct fonts, sizes, and colors (gold) */
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            margin: 10px 0;
+            color: var(--gold-main);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            line-height: 1.2;
+        }
+
+        .location {
+            display: block;
+            margin-top: 5px;
+            font-size: 1.1rem;
+            color: var(--gold-highlight);
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        /* THEME BOX (FRAME WITH STARS) */
+        /* Central framed box with twisted border look */
+        .theme-box {
+            position: relative;
+            border: 2px solid var(--gold-main);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3), inset 0 0 5px rgba(212, 175, 55, 0.2);
+            display: inline-block;
+            padding: 20px 40px;
+            margin-top: 40px;
+            max-width: 850px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        /* Twisted effect pseudo-element */
+        .theme-box::before {
+            content: '';
+            position: absolute;
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            border: 1px solid var(--gold-main);
+            border-radius: 18px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        /* Ornate stars in corners with specific content and highlights */
+        .theme-box::after {
+            content: '✦';
+            color: var(--gold-highlight);
+            position: absolute;
+            top: 5px; right: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .theme-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--white);
+            margin: 0;
+        }
+        .gold-accent {
+            color: var(--gold-main);
+        }
+
+        /* PROGRAM GRID (STRICTLY 4 COLUMNS) */
+        /* Mahalaga: Laging 4 na column sa desktop */
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 60px;
+        }
+
+        /* CARD STYLING (DOUBLE ORNATE BORDER LOOK) */
+        /* A complex structure with pseudo-elements to match the twisted border */
+        .card {
+            background: var(--navy-main);
+            border: 2px solid var(--gold-main);
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-decoration: none;
+            color: var(--white);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+        
+        /* Inner navy tile container for ornate details */
+        .card-inner {
+            background: rgba(0, 31, 63, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        
+        /* Twisted border effect - outer */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            border: 1px solid var(--gold-main);
+            border-radius: 18px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        /* Ornate stars details with correct content and content location */
+        .card::after {
+            content: '✦✦✦';
+            color: var(--gold-highlight);
+            position: absolute;
+            top: 10px; right: 10px;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15);
+        }
+
+        /* ICONS & GRADE LEVELS (Montserrat gold sans-serif) */
+        .card-icon {
+            font-size: 2.2rem;
+            color: var(--gold-main);
+            margin-bottom: 10px;
+        }
+        .card span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold-highlight);
+            margin-bottom: 15px;
+        }
+
+        /* CEREMONY TYPES (Playfair Display gold serif) */
+        .card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin: 0;
+            color: var(--gold-main);
+            line-height: 1.3;
+        }
+
+        /* HIGHLIGHTED SHS CARD (ALL-GOLD TILE) */
+        /* special class para sa huling card: all-gold tile, glowing border, navy text */
+        .card.highlighted {
+            background-color: var(--gold-main);
+            border: 2px solid var(--white);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.2);
+            color: var(--navy-main);
+        }
+        
+        .card.highlighted-inner {
+            background: none;
+            color: var(--navy-main);
+        }
+        .card.highlighted .card-icon,
+        .card.highlighted h2,
+        .card.highlighted span {
+            color: var(--navy-main);
+        }
+        .card.highlighted::before {
+            border-color: var(--white);
+            opacity: 0.5;
+        }
+        .card.highlighted::after {
+            color: var(--navy-main);
+        }
+
+        /* FOOTER */
+        /* Correct date and laurel branch icon, all in gold */
+        footer {
+            margin-top: 80px;
+            font-size: 0.9rem;
+            padding-top: 30px;
+            color: rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .footer-logo {
+            font-size: 1.2rem;
+            color: var(--gold-main);
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        /* RESPONSIVE Fallback for Mobile (Single Column) */
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .location { font-size: 0.9rem; }
+            .theme-text { font-size: 1rem; padding: 0 10px; }
+            /* Mag-single column sa phone para sa readability */
+            .program-grid { grid-template-columns: 1fr; } 
+            .card { padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="spotlight-container">
+        <div class="spotlight-left"></div>
+        <div class="spotlight-right"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>San Guillermo <br> National High School</h1>
+            <span class="location">San Marcelino, Zambales</span>
+            
+            <div class="theme-box">
+                <p class="theme-text">
+                    "Filipino Graduates: Prepared to Lead with <span class="gold-accent">Competence</span> and <span class="gold-accent">Character</span>"
+                </p>
+            </div>
+        </header>
+
+        <nav class="program-grid">
+            
+            <a href="https://heyzine.com/flip-book/ab2569bbbd.html" class="card">
+                <div class="card-inner">
+                    <div class="card-icon">💡</div> <span>Grade 7 & 8</span>
+                    <h2>Recognition Ceremony</h2>
+                </div>
+            </a>
+
+            <a href="https://heyzine.com/flip-book/d555b4850d.html" class="card">
+                <div class="card-inner">
+                    <div class="card-icon">🧭</div> <span>Grades 9 & 11</span>
+                    <h2>Recognition Ceremony</h2>
+                </div>
+            </a>
+
+            <a href="shs-recognition.html" class="card">
+                <div class="card-inner">
+                    <div class="card-icon">📜</div> <span>Junior High School</span>
+                    <h2>Moving-Up Exercises</h2>
+                </div>
+            </a>
+
+            <a href="shs-graduation.html" class="card highlighted">
+                <div class="highlighted-inner">
+                    <div class="card-icon">🎓</div> <span>Senior High School</span>
+                    <h2>Commencement Exercises</h2>
+                </div>
+            </a>
+        </nav>
+
+        <footer>
+            <div class="footer-logo">🌿</div>
+            <div>&copy; 2026</div>
+        </footer>
+    </div>
+
+</body>
+</html>

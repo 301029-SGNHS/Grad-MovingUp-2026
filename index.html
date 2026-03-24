@@ -55,10 +55,14 @@ header{
 
 header h1{
     font-family:'Playfair Display',serif;
-    font-size:clamp(1.8rem,3vw,2.4rem);
+    font-size:clamp(1.6rem,5vw,2rem); /* maliit na font at responsive */
     color:var(--gold);
-    white-space:nowrap;
+    white-space: normal; /* <-- dito nag-a-adapt sa screen */
+    text-align: center; /* optional, para siguradong center */
+    line-height:1.2;
     text-shadow:0 0 10px rgba(212,175,55,.3);
+    max-width:90%; /* hindi lalampas sa container */
+    margin:auto;
 }
 
 .location{

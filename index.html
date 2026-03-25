@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SGNHS Graduation 2026</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -29,7 +27,7 @@ body{
     overflow-x:hidden;
 }
 
-/* ⭐ GOLD STARS */
+/* ⭐ GOLD STARS BACKGROUND */
 body::before{
     content:'';
     position:absolute;
@@ -40,6 +38,7 @@ body::before{
     background-size:120px 120px, 200px 200px;
     opacity:.25;
     animation:moveStars 80s linear infinite;
+    z-index: -1;
 }
 
 @keyframes moveStars{
@@ -47,33 +46,15 @@ body::before{
     to{transform:translateY(-200px);}
 }
 
-/* HEADER */
-header{
-    text-align:center;
-    padding:50px 20px 10px;
-}
-
+header{ text-align:center; padding:50px 20px 10px; }
 header h1{
     font-family:'Playfair Display',serif;
-    font-size:clamp(1.6rem,5vw,2rem); /* maliit na font at responsive */
+    font-size:clamp(1.6rem,5vw,2rem);
     color:var(--gold);
-    white-space: normal; /* <-- dito nag-a-adapt sa screen */
-    text-align: center; /* optional, para siguradong center */
     line-height:1.2;
     text-shadow:0 0 10px rgba(212,175,55,.3);
-    max-width:90%; /* hindi lalampas sa container */
-    margin:auto;
 }
 
-.location{
-    display:block;
-    margin-top:5px;
-    color:var(--gold-soft);
-    letter-spacing:2px;
-    font-size:.9rem;
-}
-
-/* THEME BOX */
 .theme-box{
     margin-top:25px;
     display:inline-block;
@@ -81,185 +62,148 @@ header h1{
     border:1px solid rgba(212,175,55,.5);
     border-radius:12px;
     background:rgba(0,0,0,.25);
-    box-shadow:0 0 15px rgba(212,175,55,.15);
 }
 
-.theme-text{
-    font-style:italic;
-    font-size:.95rem;
+/* --- GRID SYSTEM --- */
+.container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 20px;
 }
 
-.gold-accent{
-    color:var(--gold);
+.grid-section {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 40px;
 }
 
-/* GRID */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:25px;
-    padding:40px;
-    max-width:1200px;
-    margin:auto;
+/* Row 1: 6 Columns Portrait */
+.row-portrait {
+    grid-template-columns: repeat(6, 1fr);
 }
+.row-portrait .card img { height: 320px; } /* Portrait height */
 
-/* CARD */
-.card{
+/* Row 2: 4 Columns Landscape */
+.row-landscape-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+.row-landscape-4 .card img { height: 200px; }
+
+/* Row 3 & 4: 8 Columns Small Landscape */
+.row-landscape-8 {
+    grid-template-columns: repeat(8, 1fr);
+}
+.row-landscape-8 .card img { height: 120px; }
+.row-landscape-8 .title h2 { font-size: 0.8rem; }
+.row-landscape-8 .title span { font-size: 0.55rem; }
+
+/* CARD STYLES */
+.card {
     position:relative;
     overflow:hidden;
-    border-radius:18px;
+    border-radius:12px;
     cursor:pointer;
     text-decoration:none;
+    display: block;
+    transition: .3s;
 }
 
-/* IMAGE */
-.card img{
+.card img {
     width:100%;
-    height:190px;
     object-fit:cover;
     transition:.5s;
+    display: block;
 }
 
-/* DARK OVERLAY */
-.card::before{
+.card::before {
     content:'';
     position:absolute;
     inset:0;
-    background:linear-gradient(to top, rgba(0,0,0,.85), transparent);
+    background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
     z-index:1;
 }
 
-/* ✨ STAR SHIMMER */
-.card::after{
-    content:'✦ ✧ ✦';
+.title {
     position:absolute;
-    top:10px;
-    right:12px;
-    font-size:.7rem;
-    color:var(--gold-soft);
-    letter-spacing:3px;
-    animation:twinkle 2.5s infinite;
+    bottom:8px;
+    left:8px;
+    right: 8px;
     z-index:2;
+    background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(4px);
+    padding:5px;
+    border-radius:8px;
 }
 
-@keyframes twinkle{
-    0%,100%{opacity:.3;}
-    50%{opacity:1;}
+.title span { font-size:.6rem; color:#fff; display: block; }
+.title h2 { font-size:0.9rem; color:var(--gold-soft); }
+
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+
+/* MOBILE RESPONSIVE */
+@media(max-width:1000px){
+    .row-portrait, .row-landscape-4, .row-landscape-8 { grid-template-columns: repeat(3, 1fr); }
 }
-
-/* 🔥 TITLE (FIXED READABILITY) */
-.title{
-    position:absolute;
-    bottom:12px;
-    left:12px;
-    z-index:2;
-
-    background:linear-gradient(to top, rgba(0,0,0,.8), rgba(0,0,0,.4));
-    backdrop-filter:blur(6px);
-    padding:8px 12px;
-    border-radius:10px;
-    border:1px solid rgba(255,255,255,0.15);
-}
-
-.title span{
-    font-size:.65rem;
-    letter-spacing:2px;
-    color:#ffffff;
-    opacity:.9;
-    text-shadow:0 1px 3px rgba(0,0,0,.8);
-}
-
-.title h2{
-    font-family:'Playfair Display',serif;
-    font-size:1rem;
-    color:#ffffff;
-    text-shadow:0 2px 6px rgba(0,0,0,.9);
-}
-
-/* HOVER */
-.card:hover{
-    transform:translateY(-8px) scale(1.02);
-}
-
-.card:hover img{
-    transform:scale(1.08);
-}
-
-/* 🌈 GLOW */
-.card:nth-child(4n+1):hover{box-shadow:0 0 25px rgba(59,130,246,.6);}
-.card:nth-child(4n+2):hover{box-shadow:0 0 25px rgba(34,197,94,.6);}
-.card:nth-child(4n+3):hover{box-shadow:0 0 25px rgba(245,158,11,.6);}
-.card:nth-child(4n+4):hover{box-shadow:0 0 25px rgba(239,68,68,.6);}
-
-/* FOOTER */
-.footer{
-    text-align:center;
-    padding:30px;
-    opacity:.6;
-    font-size:.85rem;
-}
-
-/* MOBILE */
-@media(max-width:900px){
-    .grid{grid-template-columns:repeat(2,1fr);}
-}
-@media(max-width:500px){
-    .grid{grid-template-columns:1fr;}
+@media(max-width:600px){
+    .row-portrait, .row-landscape-4, .row-landscape-8 { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
-
 <body>
 
 <header>
-<h1>San Guillermo <br> National High School</h1>
-<span class="location">San Marcelino, Zambales</span>
-
-<div class="theme-box">
-<p class="theme-text">
-"Filipino Graduates: Prepared to Lead with 
-<span class="gold-accent">Competence</span> and 
-<span class="gold-accent">Character</span>"
-</p>
-</div>
+    <h1>San Guillermo <br> National High School</h1>
+    <div class="theme-box">
+        <p class="theme-text">"Filipino Graduates: Prepared to Lead with <span class="gold-accent">Competence</span> and <span class="gold-accent">Character</span>"</p>
+    </div>
 </header>
 
-<div class="grid">
+<div class="container">
+    
+    <h3 style="color: var(--gold); margin-bottom: 10px;">2026 Recognition, Moving-Up, Graduation Programs</h3>
+    <div class="grid-section row-portrait">
+        <a href="Recognition7.html" class="card"><img src="7.png"><div class="title"><span>Recognition Ceremony</span><h2>Grade 7</h2></div></a>
+        <a href="Recognition8.html" class="card"><img src="8.png"><div class="title"><span>Recognition Ceremony</span><h2>Grade 8</h2></div></a>
+        <a href="Recognition9.html" class="card"><img src="9.png"><div class="title"><span>Recognition Ceremony</span><h2>Grade 9</h2></div></a>
+        <a href="Recognition11.html" class="card"><img src="11.png"><div class="title"><span>Recognition Ceremony</span><h2>Grade 11</h2></div></a>
+        <a href="#" class="card"><img src="10.png"><div class="title"><span>Moving-Up Ceremony</span><h2>Grade 10</h2></div></a>
+        <a href="#" class="card"><img src="12.png"><div class="title"><span>Commencement Exercises</span><h2>Grade 12</h2></div></a>
+    </div>
 
-<!-- SAMPLE CARDS -->
+    <h3 style="color: var(--gold); margin-bottom: 10px;">Recognition PPT</h3>
+    <div class="grid-section row-landscape-4">
+        <a href="Recognition78.html" class="card"><img src="7PPT.png"><div class="title"><span>Grade 7 PPT</span></div></a>
+        <a href="Recognition911.html" class="card"><img src="8PPT.png"><div class="title"><span>Grade 8 PPT</span></div></a>
+        <a href="Moving.html" class="card"><img src="9PPT.png"><div class="title"><span>Grade 9 PPT</span></div></a>
+        <a href="#" class="card"><img src="11PPT.png"><div class="title"><span>Grade 11 PPT</span></div></a>
+    </div>
 
-<a href="Recognition78.html" class="card">
-    <img src="78.png">
-    <div class="title"><span>G7-8 Recognition</span></div>
-</a>
+    <h3 style="color: var(--gold); margin-bottom: 10px;">Moving-Up & Graduation PPT</h3>
+    <div class="grid-section row-landscape-8">
+        <a href="#" class="card"><img src="10STE.jpg"><div class="title"><span>10 STE</span></div></a>
+        <a href="#" class="card"><img src="10Aguinaldo.jpg"><div class="title"><span>10-Aguinaldo</span></div></a>
+        <a href="#" class="card"><img src="10Aquino.jpg"><div class="title"><span>10-Aquino</span></div></a>
+        <a href="#" class="card"><img src="10Macapagal.jpg"><div class="title"><span>10-Macapagal</span></div></a>
+        <a href="#" class="card"><img src="5.jpg"><div class="title"><span>10-Magsaysay</span></div></a>
+        <a href="#" class="card"><img src="6.jpg"><div class="title"><span>10-Marcos</span></div></a>
+        <a href="#" class="card"><img src="7.jpg"><div class="title"><span>10-Quezon</span></div></a>
+        <a href="#" class="card"><img src="8.jpg"><div class="title"><span>10-Quirino</span></div></a>
+    </div>
 
-<a href="Recognition911.html" class="card">
-    <img src="911.png">
-    <div class="title"><span>G9-11 Recognition</span></div>
-</a>
-
-<a href="Moving.html" class="card">
-    <img src="10.png">
-    <div class="title"><span>JHS Moving-Up</span></div>
-</a>
-
-
-<a href="#" class="card"><img src="images/img4.png"><div class="title"><span>SHS</span><h2>Commencement</h2></div></a>
-
-<a href="10STE.html" class="card">
-    <img src="10STE.jpg">
-    <div class="title"><span>10-Sylianco PPT</span></div>
-</a>
-
-<a href="#" class="card"><img src="10Aguinaldo.jpg"><div class="title"><span>10-Aguinaldo PPT</span></div></a>
-<a href="#" class="card"><img src="10Aquino.jpg"><div class="title"><span>10-Aquino PPT</span></div></a>
-<a href="#" class="card"><img src="10Macapagal.jpg"><div class="title"><span>10-Macapagal PPT</span></div></a>
+    <div class="grid-section row-landscape-8">
+        <a href="#" class="card"><img src="9.jpg"><div class="title"><span>12</span></div></a>
+        <a href="#" class="card"><img src="10.jpg"><div class="title"><span>12</span></div></a>
+        <a href="#" class="card"><img src="11.jpg"><div class="title"><span>12</span></div></a>
+        <a href="#" class="card"><img src="12.jpg"><div class="title"><span>12</span></div></a>
+        <a href="#" class="card"><img src="13.jpg"><div class="title"><span>12</span></div></a>
+        <a href="#" class="card"><img src="14.jpg"><div class="title"><span>12</span></div></a>
+        <a href="#" class="card"><img src="15.jpg"><div class="title"><span>12</span></div></a>
+        <a href="#" class="card"><img src="16.jpg"><div class="title"><span>12</span></div></a>
+    </div>
 
 </div>
 
-<div class="footer">
-© 2026 SGNHS
-</div>
+<div class="footer">© 2026 SGNHS</div>
 
 </body>
 </html>

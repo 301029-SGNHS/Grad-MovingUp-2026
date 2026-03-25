@@ -1,222 +1,274 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="tl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SGNHS Graduation 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGNHS Graduation 2026 | Cinematic Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-:root{
-    --bg1:#020617;
-    --bg2:#0f172a;
-    --bg3:#1e293b;
-    --gold:#d4af37;
-    --gold-soft:#f1e5ac;
-    --white:#ffffff;
-}
+    <style>
+        :root {
+            --bg-deep: #020617;
+            --gold: #d4af37;
+            --gold-bright: #f9e29d;
+            --vibrant-glow: linear-gradient(45deg, #d4af37, #ffffff, #d4af37, #f1e5ac);
+        }
 
-*{box-sizing:border-box;margin:0;padding:0;}
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body{
-    font-family:'Montserrat',sans-serif;
-    background: radial-gradient(circle at top, var(--bg3), var(--bg2), var(--bg1));
-    color:var(--white);
-    min-height:100vh;
-    position:relative;
-    overflow-x:hidden;
-}
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* 🌊 DYNAMIC GRADIENT BACKGROUND */
+            background: linear-gradient(-45deg, #020617, #0f172a, #1e1b4b, #1e293b);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+        }
 
-/* ⭐ GOLD STARS BACKGROUND */
-body::before{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:
-        radial-gradient(var(--gold) 1px, transparent 2px),
-        radial-gradient(var(--gold-soft) 1px, transparent 2px);
-    background-size:120px 120px, 200px 200px;
-    opacity:.25;
-    animation:moveStars 80s linear infinite;
-    z-index: -1;
-}
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-@keyframes moveStars{
-    from{transform:translateY(0);}
-    to{transform:translateY(-200px);}
-}
+        /* ✨ ENHANCED ANIMATED STARS & GLITTERS */
+        .stars-wrapper {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
 
-header{ text-align:center; padding:50px 20px 10px; }
-header h1{
-    font-family:'Playfair Display',serif;
-    font-size:clamp(1.6rem,5vw,2rem);
-    color:var(--gold);
-    line-height:1.2;
-    text-shadow:0 0 10px rgba(212,175,55,.3);
-}
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
 
-.theme-box{
-    margin-top:25px;
-    display:inline-block;
-    padding:15px 25px;
-    border:1px solid rgba(212,175,55,.5);
-    border-radius:12px;
-    background:rgba(0,0,0,.25);
-}
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 10px white; }
+        }
 
-/* --- GRID SYSTEM --- */
-.container {
-    max-width: 1400px;
-    margin: auto;
-    padding: 20px;
-}
+        /* 🎓 VISITOR COUNTER STYLING */
+        .visitor-section {
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
 
-.grid-section {
-    display: grid;
-    gap: 15px;
-    margin-bottom: 40px;
-}
+        .count-num {
+            color: var(--gold-bright);
+            font-weight: 600;
+            font-family: 'Courier New', Courier, monospace;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+        }
 
-/* Row 1: 6 Columns Portrait */
-.row-portrait {
-    grid-template-columns: repeat(6, 1fr);
-}
-.row-portrait .card img { height: 320px; } /* Portrait height */
+        header {
+            text-align: center;
+            padding: 70px 20px 30px;
+        }
 
-/* Row 2: 4 Columns Landscape */
-.row-landscape-4 {
-    grid-template-columns: repeat(4, 1fr);
-}
-.row-landscape-4 .card img { height: 200px; }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 8vw, 3.8rem);
+            background: var(--vibrant-glow);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shineText 4s linear infinite;
+            text-transform: uppercase;
+        }
 
-/* Row 3 & 4: 8 Columns Small Landscape */
-.row-landscape-8 {
-    grid-template-columns: repeat(8, 1fr);
-}
-.row-landscape-8 .card img { height: 120px; }
-.row-landscape-8 .title h2 { font-size: 0.8rem; }
-.row-landscape-8 .title span { font-size: 0.55rem; }
+        @keyframes shineText {
+            to { background-position: 200% center; }
+        }
 
-/* CARD STYLES */
-.card {
-    position:relative;
-    overflow:hidden;
-    border-radius:12px;
-    cursor:pointer;
-    text-decoration:none;
-    display: block;
-    transition: .3s;
-}
+        .theme-box {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.4);
+            margin-top: 15px;
+        }
 
-.card img {
-    width:100%;
-    object-fit:cover;
-    transition:.5s;
-    display: block;
-}
+        .section-title {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            margin: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.4rem;
+        }
 
-.card::before {
-    content:'';
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-    z-index:1;
-}
+        .section-title::after {
+            content: "";
+            height: 1px;
+            flex-grow: 1;
+            background: linear-gradient(to right, var(--gold), transparent);
+        }
 
-.title {
-    position:absolute;
-    bottom:8px;
-    left:8px;
-    right: 8px;
-    z-index:2;
-    background:rgba(0,0,0,0.5);
-    backdrop-filter:blur(4px);
-    padding:5px;
-    border-radius:8px;
-}
+        /* --- GRID SYSTEM --- */
+        .container { max-width: 1400px; margin: auto; padding: 20px; }
+        .grid-section { display: grid; gap: 20px; margin-bottom: 50px; }
 
-.title span { font-size:.6rem; color:#fff; display: block; }
-.title h2 { font-size:0.9rem; color:var(--gold-soft); }
+        .row-portrait { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+        .row-landscape-4 { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        .row-landscape-8 { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 
-.card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        /* --- CARD STYLES --- */
+        .card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            text-decoration: none;
+            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-/* MOBILE RESPONSIVE */
-@media(max-width:1000px){
-    .row-portrait, .row-landscape-4, .row-landscape-8 { grid-template-columns: repeat(3, 1fr); }
-}
-@media(max-width:600px){
-    .row-portrait, .row-landscape-4, .row-landscape-8 { grid-template-columns: repeat(2, 1fr); }
-}
-</style>
+        .card img {
+            width: 100%; object-fit: cover; transition: 0.8s; opacity: 0.7; display: block;
+        }
+
+        .row-portrait .card img { height: 300px; }
+        .row-landscape-4 .card img { height: 200px; }
+        .row-landscape-8 .card img { height: 130px; }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--gold);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .card:hover img { opacity: 1; transform: scale(1.1); }
+
+        .title-box {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 15px;
+            z-index: 2;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        }
+
+        .title-box span { font-size: 0.6rem; color: var(--gold-bright); display: block; text-transform: uppercase; }
+        .title-box h2 { font-size: 0.95rem; color: #fff; }
+
+        .footer { text-align: center; padding: 60px; color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+
+    </style>
 </head>
 <body>
+
+<div class="stars-wrapper" id="stars-container"></div>
 
 <header>
     <h1>San Guillermo <br> National High School</h1>
     <div class="theme-box">
-        <p class="theme-text">"Filipino Graduates: Prepared to Lead with <span class="gold-accent">Competence</span> and <span class="gold-accent">Character</span>"</p>
+        <p class="theme-text" style="font-style: italic;">"Filipino Graduates: Prepared to Lead with <span style="color:var(--gold)">Competence</span> and <span style="color:var(--gold)">Character</span>"</p>
+    </div>
+    <br>
+    
+    <div class="visitor-section">
+        <span style="font-size: 0.8rem; opacity: 0.8;">BATCH PORTAL VISITS:</span>
+        <span id="count" class="count-num">000000</span>
     </div>
 </header>
 
 <div class="container">
     
-    <h3 style="color: var(--gold); margin-bottom: 10px;">2026 Recognition, Moving-Up, Graduation Programs</h3>
+    <h3 class="section-title">Recognition & Graduation Programs</h3>
     <div class="grid-section row-portrait">
-        <a href="Recognition7.html" class="card"><img src="7.png"><div class="title"><span>Recognition Ceremony</span><h2>Grade 7</h2></div></a>
-        <a href="Recognition8.html" class="card"><img src="8.png"><div class="title"><span>Recognition Ceremony</span><h2>Grade 8</h2></div></a>
-        <a href="Recognition9.html" class="card"><img src="9.png"><div class="title"><span>Recognition Ceremony</span><h2>Grade 9</h2></div></a>
-        <a href="Recognition11.html" class="card"><img src="11.png"><div class="title"><span>Recognition Ceremony</span><h2>Grade 11</h2></div></a>
-        <a href="#" class="card"><img src="10.png"><div class="title"><span>Moving-Up Ceremony</span><h2>Grade 10</h2></div></a>
-        <a href="#" class="card"><img src="12.png"><div class="title"><span>Commencement Exercises</span><h2>Grade 12</h2></div></a>
+        <a href="Recognition7.html" class="card"><img src="7.png"><div class="title-box"><span>Ceremony</span><h2>Grade 7</h2></div></a>
+        <a href="Recognition8.html" class="card"><img src="8.png"><div class="title-box"><span>Ceremony</span><h2>Grade 8</h2></div></a>
+        <a href="Recognition9.html" class="card"><img src="9.png"><div class="title-box"><span>Ceremony</span><h2>Grade 9</h2></div></a>
+        <a href="Recognition11.html" class="card"><img src="11.png"><div class="title-box"><span>Ceremony</span><h2>Grade 11</h2></div></a>
+        <a href="#" class="card"><img src="10.png"><div class="title-box"><span>Moving-Up</span><h2>Grade 10</h2></div></a>
+        <a href="#" class="card"><img src="12.png"><div class="title-box"><span>Commencement</span><h2>Grade 12</h2></div></a>
     </div>
 
-  <h3 style="color: var(--gold); margin-bottom: 10px;">Moving-Up Program</h3>
+    <h3 class="section-title">Moving-Up Sections</h3>
     <div class="grid-section row-landscape-8">
-        <a href="#" class="card"><img src="10.png"><div class="title"><span>10 STE</span></div></a>
-        <a href="10Aguinaldo.html" class="card"><img src="10.png"><div class="title"><span>10-Aguinaldo</span></div></a>
-        <a href="10Aquino.html" class="card"><img src="10.png"><div class="title"><span>10-Aquino</span></div></a>
-        <a href="10Macapagal.html" class="card"><img src="10.png"><div class="title"><span>10-Macapagal</span></div></a>
-        <a href="10Magsaysay.html" class="card"><img src="10.png"><div class="title"><span>10-Magsaysay</span></div></a>
-        <a href="10Marcos.html" class="card"><img src="10.png"><div class="title"><span>10-Marcos</span></div></a>
-        <a href="10Quezon.html" class="card"><img src="10.png"><div class="title"><span>10-Quezon</span></div></a>
-        <a href="10Quirino.html" class="card"><img src="10.png"><div class="title"><span>10-Quirino</span></div></a>
+        <a href="#" class="card"><img src="10.png"><div class="title-box"><h2>10 STE</h2></div></a>
+        <a href="10Aguinaldo.html" class="card"><img src="10.png"><div class="title-box"><h2>10-Aguinaldo</h2></div></a>
+        <a href="10Aquino.html" class="card"><img src="10.png"><div class="title-box"><h2>10-Aquino</h2></div></a>
+        <a href="10Macapagal.html" class="card"><img src="10.png"><div class="title-box"><h2>10-Macapagal</h2></div></a>
+        <a href="10Magsaysay.html" class="card"><img src="10.png"><div class="title-box"><h2>10-Magsaysay</h2></div></a>
+        <a href="10Marcos.html" class="card"><img src="10.png"><div class="title-box"><h2>10-Marcos</h2></div></a>
+        <a href="10Quezon.html" class="card"><img src="10.png"><div class="title-box"><h2>10-Quezon</h2></div></a>
+        <a href="10Quirino.html" class="card"><img src="10.png"><div class="title-box"><h2>10-Quirino</h2></div></a>
     </div>
 
-
-    <h3 style="color: var(--gold); margin-bottom: 10px;">Recognition PPT</h3>
+    <h3 class="section-title">Presentation Copies (PPT)</h3>
     <div class="grid-section row-landscape-4">
-        <a href="Recognition78.html" class="card"><img src="7PPT.png"><div class="title"><span>Grade 7 PPT</span></div></a>
-        <a href="Recognition911.html" class="card"><img src="8PPT.png"><div class="title"><span>Grade 8 PPT</span></div></a>
-        <a href="Moving.html" class="card"><img src="9PPT.png"><div class="title"><span>Grade 9 PPT</span></div></a>
-        <a href="#" class="card"><img src="11PPT.png"><div class="title"><span>Grade 11 PPT</span></div></a>
-    </div>
-
-    <h3 style="color: var(--gold); margin-bottom: 10px;">Moving-Up & Graduation PPT</h3>
-    <div class="grid-section row-landscape-8">
-        <a href="#" class="card"><img src="10STE.jpg"><div class="title"><span>10 STE</span></div></a>
-        <a href="#" class="card"><img src="10Aguinaldo.jpg"><div class="title"><span>10-Aguinaldo</span></div></a>
-        <a href="#" class="card"><img src="10Aquino.jpg"><div class="title"><span>10-Aquino</span></div></a>
-        <a href="#" class="card"><img src="10Macapagal.jpg"><div class="title"><span>10-Macapagal</span></div></a>
-        <a href="#" class="card"><img src="5.jpg"><div class="title"><span>10-Magsaysay</span></div></a>
-        <a href="#" class="card"><img src="6.jpg"><div class="title"><span>10-Marcos</span></div></a>
-        <a href="#" class="card"><img src="7.jpg"><div class="title"><span>10-Quezon</span></div></a>
-        <a href="#" class="card"><img src="8.jpg"><div class="title"><span>10-Quirino</span></div></a>
-    </div>
-
-    <div class="grid-section row-landscape-8">
-        <a href="#" class="card"><img src="9.jpg"><div class="title"><span>12</span></div></a>
-        <a href="#" class="card"><img src="10.jpg"><div class="title"><span>12</span></div></a>
-        <a href="#" class="card"><img src="11.jpg"><div class="title"><span>12</span></div></a>
-        <a href="#" class="card"><img src="12.jpg"><div class="title"><span>12</span></div></a>
-        <a href="#" class="card"><img src="13.jpg"><div class="title"><span>12</span></div></a>
-        <a href="#" class="card"><img src="14.jpg"><div class="title"><span>12</span></div></a>
-        <a href="#" class="card"><img src="15.jpg"><div class="title"><span>12</span></div></a>
-        <a href="#" class="card"><img src="16.jpg"><div class="title"><span>12</span></div></a>
+        <a href="Recognition78.html" class="card"><img src="7PPT.png"><div class="title-box"><span>Download</span><h2>Grade 7 PPT</h2></div></a>
+        <a href="Recognition911.html" class="card"><img src="8PPT.png"><div class="title-box"><span>Download</span><h2>Grade 8 PPT</h2></div></a>
+        <a href="Moving.html" class="card"><img src="9PPT.png"><div class="title-box"><span>Download</span><h2>Grade 9 PPT</h2></div></a>
+        <a href="#" class="card"><img src="11PPT.png"><div class="title-box"><span>Download</span><h2>Grade 11 PPT</h2></div></a>
     </div>
 
 </div>
 
-<div class="footer">© 2026 SGNHS</div>
+<div class="footer">
+    <p>© 2026 San Guillermo National High School | Batch 2026</p>
+</div>
+
+<script>
+    // 1. GENERATE STARS SCRIPT
+    const starsContainer = document.getElementById('stars-container');
+    const starCount = 150;
+
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        const size = Math.random() * 3;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        
+        star.style.setProperty('--duration', `${2 + Math.random() * 4}s`);
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        
+        // Randomly color some stars gold
+        if (Math.random() > 0.8) {
+            star.style.background = '#d4af37';
+            star.style.boxShadow = '0 0 5px #d4af37';
+        }
+        
+        starsContainer.appendChild(star);
+    }
+
+    // 2. VISITOR COUNTER SCRIPT (Local Storage + Global API Simulation)
+    function updateCounter() {
+        // Simulating a starting number (para hindi mukhang zero ang site)
+        let baseCount = 1240; 
+        let localVisits = localStorage.getItem('visit_count') || 0;
+        localVisits++;
+        localStorage.setItem('visit_count', localVisits);
+        
+        let total = baseCount + parseInt(localVisits);
+        document.getElementById('count').innerText = total.toString().padStart(6, '0');
+    }
+    
+    updateCounter();
+</script>
 
 </body>
 </html>
